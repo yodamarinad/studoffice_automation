@@ -20,19 +20,24 @@ import glob
 import PyPDF2
 from PyPDF2 import PdfFileReader
 import re
+from pathlib import Path
 
-pdf = glob.glob(r"C:/Users/User/Desktop/dev/SCAN_20240208_164856784_007.pdf")
+
+pdf_dir = Path(r"C:/Users/User/Desktop/dev/studoffice_automation/pdf")
+txt_dir = Path(r"C:/Users/User/Desktop/dev/studoffice_automation/txt")
+pattern = r"\d\d\d/\d{5}"
 
 if __name__ == "__main__":
-    for pdf_path in pdf:
-        pages = convert_from_path(pdf_path, 500)
-
+    for pdf_path in pdf_dir.glob('*.pdf'):
+        pages = convert_from_path(pdf_path, 300)
+        print(f"pages={pages}")
         for pageNum,imgBlob in enumerate(pages):
-            # text = pytesseract.image_to_string(imgBlob,lang='rus')
             text = pytesseract.image_to_string(imgBlob)
+            num = re.findall(pattern, text)
+            print(f"num: {num}")
+            # if len(num)==1:
+            #     break
 
-            with open(f'{pdf_path}.txt', 'a', encoding="utf-8") as the_file:
-                the_file.write(text)
-
-    # with open(r"C:/Users/User/Documents/Scan/SCAN_20240208_164856784_007.pdf.txt", 'r') as fp:
-    #     print(r"\d\d\d/\d{5}")
+        os.rename(pdf_path, os.path.join(pdf_dir, f"{num[0].replace("/", "_")}.pdf"))
+            # with open(f'{pdf_path}.txt', 'a', encoding="utf-8") as the_file:
+            #     the_file.write(text)
