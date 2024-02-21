@@ -9,11 +9,6 @@ import PyPDF2
 from PyPDF2 import PdfFileReader
 import re
 from pathlib import Path
-import lxml
-from lxml.html import fromstring, tostring
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver import FirefoxOptions
 
 
 
