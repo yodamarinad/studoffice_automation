@@ -11,7 +11,6 @@ import re
 from pathlib import Path
 
 
-
 pdf_dir = Path(r"C:/Users/User/Desktop/dev/studoffice_automation/pdf")
 
 pattern = r"\d\d\d/\d{5}"

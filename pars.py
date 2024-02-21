@@ -20,11 +20,6 @@ admin_pw = ("sgsgsgsfgsg")
 driver.findElement(By.ID("username").send_keys(admin_pw))
 driver.findElement(By.ID("password").send_keys(admin_id))
 
-# driver.find_element("name", "commit").click()
-
-# s = driver.find_element_by_xpath("//*[@id="name"]")
-# s.send_keys('1')
-# s.send_keys.submit()
 
 # def __init__(self):
 #     options = FirefoxOptions()
